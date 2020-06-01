@@ -6,6 +6,7 @@ for(var i = 0; i<document.querySelectorAll(".drum").length; i++) {
     //click detected, perform function
     console.log(this.innerHTML);
     playAudio(this.innerHTML);
+    buttonAnimation(this.innerHTML);
 
   });
 }
@@ -13,6 +14,8 @@ for(var i = 0; i<document.querySelectorAll(".drum").length; i++) {
 document.addEventListener("keypress", function(event) {
   console.log(event);
   playAudio(event.key);
+  buttonAnimation(event.key);
+
 });
 
 function playAudio(drumElement) {
@@ -46,6 +49,13 @@ function playAudio(drumElement) {
       audio.play();
       break;
     default:
-      break;
+      console.log(this.innerHTML);
   }
+}
+
+function buttonAnimation(currentKey) {
+  var flashingButton = document.querySelector("." + currentKey);
+
+  flashingButton.classList.add("pressed");
+  setTimeout(function(){ flashingButton.classList.remove("pressed"); }, 100);
 }
